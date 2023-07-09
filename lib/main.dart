@@ -115,8 +115,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             OutlinedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Scanner()));
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const BarcodeListScannerWithController(),
+                  ),
+                );
               },
               child: Text('scan qr code'),
             ),
