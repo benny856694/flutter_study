@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_studdy/mobilescanner.dart';
+import 'package:flutter_studdy/riverpod_example.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -113,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            OutlinedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -122,7 +124,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 );
               },
-              child: Text('scan qr code'),
+              child: const Text('Scan QR Code'),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const RiverPodExample(),
+                  ),
+                );
+              },
+              child: const Text('Riverpod Example'),
             ),
           ],
         ),
