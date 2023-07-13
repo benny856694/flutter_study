@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_studdy/mobilescanner.dart';
 import 'package:flutter_studdy/riverpod_example.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      builder: EasyLoading.init(),
     );
   }
 }
