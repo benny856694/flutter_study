@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 class Device {
-  String sn;
+  String mac;
   String lanIP;
   String id;
   bool liveEnabled;
@@ -11,7 +11,7 @@ class Device {
   String system;
 
   Device({
-    required this.sn,
+    required this.mac,
     required this.lanIP,
     required this.id,
     required this.liveEnabled,
@@ -22,7 +22,7 @@ class Device {
   @override
   String toString() {
     // TODO: implement toString
-    return '$lanIP - $sn - $platform - $system';
+    return '$lanIP - $mac - $platform - $system';
   }
 }
 
@@ -38,7 +38,7 @@ int _countNonZeroBytes(Uint8List bytesArray, int start) {
 
 void main() async {
   // Get the interface IP address.
-  InternetAddress multicastAddress = new InternetAddress("224.0.1.1");
+  InternetAddress multicastAddress = InternetAddress("224.0.1.1");
   int multicastPort = 6100;
   RawDatagramSocket.bind("192.168.0.251", multicastPort)
       .then((RawDatagramSocket socket) {
@@ -77,35 +77,35 @@ void main() async {
         if (d.data.buffer.lengthInBytes > 120) {
           final buffer = d.data;
           // Get the SN.
-          final Utf8Dec = const Utf8Decoder();
+          const utf8 = Utf8Decoder();
           var start = 8;
           var end = _countNonZeroBytes(buffer, start);
-          String sn = Utf8Dec.convert(buffer, 8, end).trim();
+          String mac = utf8.convert(buffer, 8, end).trim();
 
           // Get the IP address.
           start = 28;
           end = _countNonZeroBytes(buffer, start);
-          String ip = Utf8Dec.convert(buffer, start, end).trim();
+          String ip = utf8.convert(buffer, start, end).trim();
 
           start = 48;
           end = _countNonZeroBytes(buffer, start);
           // Get the mask.
-          String mask = Utf8Dec.convert(buffer, start, end).trim();
+          String mask = utf8.convert(buffer, start, end).trim();
 
           start = 84;
           end = _countNonZeroBytes(buffer, start);
           // Get the platform.
-          String platform = Utf8Dec.convert(buffer, start, end).trim();
+          String platform = utf8.convert(buffer, start, end).trim();
 
           start = 116;
           end = _countNonZeroBytes(buffer, start);
           // Get the system.
-          String system = Utf8Dec.convert(buffer, start, end).trim();
+          String system = utf8.convert(buffer, start, end).trim();
 
           // If the system is equal to the constant `Constants.PICKFUN_SYS_ID`, create a new `Device` object with the extracted information and add it to the `devices` list.
           if (system != 'Depi') {
             Device device = Device(
-              sn: sn,
+              mac: mac,
               lanIP: ip,
               id: "0",
               liveEnabled: true,
