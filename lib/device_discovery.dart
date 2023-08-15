@@ -7,19 +7,33 @@ class Device {
   String lanIP;
   String id;
   bool liveEnabled;
+  String platform;
+  String system;
 
   Device({
     required this.sn,
     required this.lanIP,
     required this.id,
     required this.liveEnabled,
+    required this.platform,
+    required this.system,
   });
 
   @override
   String toString() {
     // TODO: implement toString
-    return '$lanIP - $sn';
+    return '$lanIP - $sn - $platform - $system';
   }
+}
+
+int _countNonZeroBytes(Uint8List bytesArray, int start) {
+  var cnt = 0;
+  var i = start;
+  while (bytesArray[i] != 0) {
+    cnt++;
+    i++;
+  }
+  return cnt + start;
 }
 
 void main() async {
@@ -33,6 +47,21 @@ void main() async {
 
     socket.joinMulticast(multicastAddress);
     print('Multicast group joined');
+
+    socket.send([
+      0xbb,
+      0x0b,
+      0x00,
+      0x00,
+      0x04,
+      0x00,
+      0x00,
+      0x00,
+      0xbb,
+      0x0b,
+      0x00,
+      0x00
+    ], multicastAddress, multicastPort);
 
     final start = DateTime.now();
     socket.listen((RawSocketEvent e) {
@@ -49,27 +78,39 @@ void main() async {
           final buffer = d.data;
           // Get the SN.
           final Utf8Dec = const Utf8Decoder();
-          String sn = Utf8Dec.convert(buffer, 8, 28).trim();
+          var start = 8;
+          var end = _countNonZeroBytes(buffer, start);
+          String sn = Utf8Dec.convert(buffer, 8, end).trim();
 
           // Get the IP address.
-          String ip = Utf8Dec.convert(buffer, 28, 48).trim();
+          start = 28;
+          end = _countNonZeroBytes(buffer, start);
+          String ip = Utf8Dec.convert(buffer, start, end).trim();
 
+          start = 48;
+          end = _countNonZeroBytes(buffer, start);
           // Get the mask.
-          String mask = Utf8Dec.convert(buffer, 48, 68).trim();
+          String mask = Utf8Dec.convert(buffer, start, end).trim();
 
+          start = 84;
+          end = _countNonZeroBytes(buffer, start);
           // Get the platform.
-          String platform = Utf8Dec.convert(buffer, 84, 116).trim();
+          String platform = Utf8Dec.convert(buffer, start, end).trim();
 
+          start = 116;
+          end = _countNonZeroBytes(buffer, start);
           // Get the system.
-          String system = Utf8Dec.convert(buffer, 116, 148).trim();
+          String system = Utf8Dec.convert(buffer, start, end).trim();
 
           // If the system is equal to the constant `Constants.PICKFUN_SYS_ID`, create a new `Device` object with the extracted information and add it to the `devices` list.
-          if (system.startsWith('Depi')) {
+          if (system != 'Depi') {
             Device device = Device(
               sn: sn,
               lanIP: ip,
               id: "0",
               liveEnabled: true,
+              platform: platform,
+              system: system,
             );
             print(device.toString());
           }
