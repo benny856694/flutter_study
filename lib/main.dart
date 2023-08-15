@@ -4,7 +4,9 @@ import 'package:flutter_studdy/mobilescanner.dart';
 import 'package:flutter_studdy/riverpod_example.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() {
+
+
+void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 

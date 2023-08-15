@@ -5,6 +5,13 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'device_discovery.dart';
+
+final devicesProvider = FutureProvider<List<Device>>((ref) async {
+  final devices = await discoverDevices();
+  return devices;
+});
+
 final timerProvider = StateProvider<int>((ref) {
   return 2;
 });
@@ -22,6 +29,7 @@ class RiverPodExample extends HookConsumerWidget {
     final counter = useState(0);
     final loader = ref.watch(loaderProvider);
     final timer = ref.watch(timerProvider);
+    final devices = ref.watch(devicesProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -29,16 +37,45 @@ class RiverPodExample extends HookConsumerWidget {
         title: const Text('Riverpod Example'),
       ),
       body: Center(
-        child: loader.when(
-          data: (data) {
-            EasyLoading.dismiss();
-            return Text('$data');
-          },
-          error: (error, stack) => const Text('error'),
-          loading: () {
-            EasyLoading.show(status: 'wait for $timer sec(s)');
-            return const SizedBox.shrink();
-          },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            loader.when(
+              data: (data) {
+                EasyLoading.dismiss();
+                return Text('$data');
+              },
+              error: (error, stack) => const Text('error'),
+              loading: () {
+                EasyLoading.show(status: 'wait for $timer sec(s)');
+                return const SizedBox.shrink();
+              },
+            ),
+            TextField(
+              decoration: InputDecoration(
+                suffixIcon: InkWell(
+                  onTap: () {
+                    EasyLoading.showInfo('clicked');
+                  },
+                  child: Icon(Icons.qr_code),
+                ),
+              ),
+            ),
+            devices.when(
+                data: (data) {
+                  return data.isEmpty
+                      ? const Text('0 devices found')
+                      : Expanded(
+                          child: ListView.builder(
+                              itemCount: data.length,
+                              itemBuilder: (context, index) => ListTile(
+                                    title: Text(data[index].ip),
+                                  )),
+                        );
+                },
+                error: (error, st) => const Text('error'),
+                loading: () => const CircularProgressIndicator()),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
