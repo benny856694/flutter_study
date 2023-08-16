@@ -105,13 +105,10 @@ Future<List<Device>> discoverDevices() async {
       multicastAddress,
       multicastPort);
 
-  print('start listen');
   final subscription = socket.listen((RawSocketEvent e) {
     Datagram? d = socket.receive();
     if (d == null) return;
-    print("get data");
     int type = ByteData.view(d.data.buffer).getInt32(0, Endian.little);
-    print('type: $type');
 
     // If the packet type is 3004, parse the packet and extract the device information.
     if (type == 3004) {
@@ -159,8 +156,7 @@ Future<List<Device>> discoverDevices() async {
     }
   });
 
-  await Future.delayed(const Duration(seconds: 15));
-  print('cancel listen');
+  await Future.delayed(const Duration(seconds: 5));
   subscription.cancel();
   return result;
 }
