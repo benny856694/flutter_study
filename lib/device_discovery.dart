@@ -1,16 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+
+@immutable
 class Device {
   final String mac;
   final String ip;
   final String platform;
   final String system;
   final String mask;
-  Device({
+  const Device({
     required this.mac,
     required this.ip,
     required this.platform,
@@ -87,22 +89,24 @@ int _countNonZeroBytes(Uint8List bytesArray, int start) {
   return cnt + start;
 }
 
+const _multicastAddress = "224.0.1.1";
+const _multicastPort = 6100;
+
 Future<List<Device>> discoverDevices() async {
   // Get the interface IP address.
 
   final result = <Device>[];
 
-  InternetAddress multicastAddress = InternetAddress("224.0.1.1");
-  int multicastPort = 6100;
+  InternetAddress multicastAddress = InternetAddress(_multicastAddress);
   final socket =
-      await RawDatagramSocket.bind(InternetAddress.anyIPv4, multicastPort);
+      await RawDatagramSocket.bind(InternetAddress.anyIPv4, _multicastPort);
   socket.broadcastEnabled = true;
   socket.joinMulticast(multicastAddress);
 
   socket.send(
       [0xbb, 0x0b, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0xbb, 0x0b, 0x00, 0x00],
       multicastAddress,
-      multicastPort);
+      _multicastPort);
 
   final subscription = socket.listen((RawSocketEvent e) {
     Datagram? d = socket.receive();
@@ -159,4 +163,26 @@ Future<List<Device>> discoverDevices() async {
   subscription.cancel();
   socket.close();
   return result;
+}
+
+Future<void> setIpbyMac(
+    String ip, String mask, String gateway, String mac) async {
+  final macBytes = ascii.encoder.convert(mac);
+  final ipBytes = ascii.encoder.convert(ip);
+  final maskBytes = ascii.encoder.convert(mask);
+  final gatewayBytes = ascii.encoder.convert(gateway);
+
+  final bytes = Uint8List(20 * 4 + 8);
+  final byteData = bytes.buffer.asByteData();
+  byteData.setInt32(0, 3005, Endian.little);
+  byteData.setInt32(4, 80, Endian.little);
+  bytes.setRange(8, 8 + macBytes.length, macBytes);
+  bytes.setRange(28, 28 + ipBytes.length, ipBytes);
+  bytes.setRange(48, 48 + maskBytes.length, maskBytes);
+  bytes.setRange(68, 68 + gatewayBytes.length, gatewayBytes);
+
+  final socket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
+  socket.broadcastEnabled = true;
+  final multiCast = InternetAddress(_multicastAddress);
+  socket.send(bytes, multiCast, _multicastPort);
 }

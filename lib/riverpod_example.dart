@@ -72,8 +72,17 @@ class RiverPodExample extends HookConsumerWidget {
                             itemBuilder: (context, index) {
                               final dev = data[index];
                               return ListTile(
-                                title: Text(dev.ip),
+                                leading: const Icon(Icons.camera_front),
+                                title: Text('${dev.ip} - ${dev.mac}'),
                                 subtitle: Text(dev.platform),
+                                onTap: () async {
+                                  await setIpbyMac(
+                                    "192.168.0.87",
+                                    dev.mask,
+                                    '192.168.0.1',
+                                    dev.mac,
+                                  );
+                                },
                               );
                             },
                           ),
