@@ -165,7 +165,7 @@ Future<List<Device>> discoverDevices() async {
   return result;
 }
 
-Future<void> setIpbyMac(
+Future<bool> setIpbyMac(
   String mac,
   String ip,
   String mask,
@@ -188,5 +188,5 @@ Future<void> setIpbyMac(
   final socket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
   socket.broadcastEnabled = true;
   final multiCast = InternetAddress(_multicastAddress);
-  socket.send(bytes, multiCast, _multicastPort);
+  return socket.send(bytes, multiCast, _multicastPort) != 0;
 }
