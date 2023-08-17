@@ -62,6 +62,7 @@ class RiverPodExample extends HookConsumerWidget {
               ),
             ),
             devices.when(
+                skipLoadingOnRefresh: false,
                 data: (data) {
                   return data.isEmpty
                       ? const Text('0 devices found')
@@ -80,9 +81,9 @@ class RiverPodExample extends HookConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ref.read(timerProvider.notifier).state = Random().nextInt(10);
+          ref.invalidate(devicesProvider);
         },
-        child: const Icon(Icons.timer),
+        child: const Icon(Icons.refresh),
       ),
     );
   }
