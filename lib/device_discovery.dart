@@ -166,8 +166,12 @@ Future<List<Device>> discoverDevices() async {
 }
 
 Future<void> setIpbyMac(
-    String ip, String mask, String gateway, String mac) async {
-  final macBytes = ascii.encoder.convert(mac);
+  String mac,
+  String ip,
+  String mask,
+  String gateway,
+) async {
+  final macBytes = ascii.encoder.convert(mac + ' '); //must append a space
   final ipBytes = ascii.encoder.convert(ip);
   final maskBytes = ascii.encoder.convert(mask);
   final gatewayBytes = ascii.encoder.convert(gateway);
