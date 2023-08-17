@@ -97,7 +97,6 @@ Future<List<Device>> discoverDevices() async {
   final socket =
       await RawDatagramSocket.bind(InternetAddress.anyIPv4, multicastPort);
   socket.broadcastEnabled = true;
-  print('${socket.address}:${socket.port}');
   socket.joinMulticast(multicastAddress);
 
   socket.send(
@@ -158,5 +157,6 @@ Future<List<Device>> discoverDevices() async {
 
   await Future.delayed(const Duration(seconds: 5));
   subscription.cancel();
+  socket.close();
   return result;
 }

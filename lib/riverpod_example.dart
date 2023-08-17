@@ -68,10 +68,15 @@ class RiverPodExample extends HookConsumerWidget {
                       ? const Text('0 devices found')
                       : Expanded(
                           child: ListView.builder(
-                              itemCount: data.length,
-                              itemBuilder: (context, index) => ListTile(
-                                    title: Text(data[index].ip),
-                                  )),
+                            itemCount: data.length,
+                            itemBuilder: (context, index) {
+                              final dev = data[index];
+                              return ListTile(
+                                title: Text(dev.ip),
+                                subtitle: Text(dev.platform),
+                              );
+                            },
+                          ),
                         );
                 },
                 error: (error, st) => const Text('error'),
