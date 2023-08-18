@@ -77,10 +77,10 @@ class RiverPodExample extends HookConsumerWidget {
                                 subtitle: Text(dev.platform),
                                 onTap: () async {
                                   await setIpbyMac(
-                                    dev.mac,
-                                    "192.168.0.87",
-                                    dev.mask,
-                                    '192.168.0.1',
+                                    mac: dev.mac,
+                                    ip: "192.168.0.87",
+                                    mask: dev.mask,
+                                    gateway: '192.168.0.1',
                                   );
                                 },
                               );
