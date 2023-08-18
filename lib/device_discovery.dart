@@ -103,9 +103,10 @@ Future<List<Device>> discoverDevices() async {
   socket.joinMulticast(multicastAddress);
 
   socket.send(
-      [0xbb, 0x0b, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0xbb, 0x0b, 0x00, 0x00],
-      multicastAddress,
-      _multicastPort);
+    [0xbb, 0x0b, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0xbb, 0x0b, 0x00, 0x00],
+    multicastAddress,
+    _multicastPort,
+  );
 
   final subscription = socket.listen((RawSocketEvent e) {
     Datagram? d = socket.receive();
@@ -113,46 +114,44 @@ Future<List<Device>> discoverDevices() async {
     int type = ByteData.view(d.data.buffer).getInt32(0, Endian.little);
 
     // If the packet type is 3004, parse the packet and extract the device information.
-    if (type == 3004) {
-      if (d.data.buffer.lengthInBytes > 120) {
-        final buffer = d.data;
-        // Get the SN.
-        const utf8 = Utf8Decoder();
-        var start = 8;
-        var end = _countNonZeroBytes(buffer, start);
-        String mac = utf8.convert(buffer, 8, end).trim();
+    if (type == 3004 && d.data.length > 120) {
+      final buffer = d.data;
+      // Get the SN.
+      const utf8 = Utf8Decoder();
+      var start = 8;
+      var end = _countNonZeroBytes(buffer, start);
+      var mac = utf8.convert(buffer, 8, end).trim();
 
-        // Get the IP address.
-        start = 28;
-        end = _countNonZeroBytes(buffer, start);
-        String ip = utf8.convert(buffer, start, end).trim();
+      // Get the IP address.
+      start = 28;
+      end = _countNonZeroBytes(buffer, start);
+      var ip = utf8.convert(buffer, start, end).trim();
 
-        start = 48;
-        end = _countNonZeroBytes(buffer, start);
-        // Get the mask.
-        String mask = utf8.convert(buffer, start, end).trim();
+      start = 48;
+      end = _countNonZeroBytes(buffer, start);
+      // Get the mask.
+      var mask = utf8.convert(buffer, start, end).trim();
 
-        start = 84;
-        end = _countNonZeroBytes(buffer, start);
-        // Get the platform.
-        String platform = utf8.convert(buffer, start, end).trim();
+      start = 84;
+      end = _countNonZeroBytes(buffer, start);
+      // Get the platform.
+      var platform = utf8.convert(buffer, start, end).trim();
 
-        start = 116;
-        end = _countNonZeroBytes(buffer, start);
-        // Get the system.
-        String system = utf8.convert(buffer, start, end).trim();
+      start = 116;
+      end = _countNonZeroBytes(buffer, start);
+      // Get the system.
+      var system = utf8.convert(buffer, start, end).trim();
 
-        if (system != 'Depi') {
-          final device = Device(
-            mac: mac,
-            ip: ip,
-            platform: platform,
-            system: system,
-            mask: mask,
-          );
-          if (!result.contains(device)) {
-            result.add(device);
-          }
+      if (system != 'Depi') {
+        final device = Device(
+          mac: mac,
+          ip: ip,
+          platform: platform,
+          system: system,
+          mask: mask,
+        );
+        if (!result.contains(device)) {
+          result.add(device);
         }
       }
     }
