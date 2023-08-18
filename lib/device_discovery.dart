@@ -175,14 +175,14 @@ Future<bool> setIpbyMac({
   final maskBytes = ascii.encoder.convert(mask);
   final gatewayBytes = ascii.encoder.convert(gateway);
 
-  final bytes = Uint8List(20 * 4 + 8);
+  final bytes = Uint8List(4 * 2 + 20 * 4);
   final byteData = bytes.buffer.asByteData();
-  byteData.setInt32(0, 3005, Endian.little);
-  byteData.setInt32(4, 80, Endian.little);
-  bytes.setRange(8, 8 + macBytes.length, macBytes);
-  bytes.setRange(28, 28 + ipBytes.length, ipBytes);
-  bytes.setRange(48, 48 + maskBytes.length, maskBytes);
-  bytes.setRange(68, 68 + gatewayBytes.length, gatewayBytes);
+  byteData.setInt32(0, 3005, Endian.little); //header
+  byteData.setInt32(4, 80, Endian.little); //length of following bytes
+  bytes.setRange(8, 8 + macBytes.length, macBytes); //20 bytes
+  bytes.setRange(28, 28 + ipBytes.length, ipBytes); //20 bytes
+  bytes.setRange(48, 48 + maskBytes.length, maskBytes); //20 bytes
+  bytes.setRange(68, 68 + gatewayBytes.length, gatewayBytes); //20 bytes
 
   final socket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
   final multiCast = InternetAddress(_multicastAddress);
