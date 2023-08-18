@@ -186,7 +186,8 @@ Future<bool> setIpbyMac({
   bytes.setRange(68, 68 + gatewayBytes.length, gatewayBytes);
 
   final socket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
-  socket.broadcastEnabled = true;
   final multiCast = InternetAddress(_multicastAddress);
-  return socket.send(bytes, multiCast, _multicastPort) != 0;
+  final result = socket.send(bytes, multiCast, _multicastPort) != 0;
+  socket.close();
+  return result;
 }
