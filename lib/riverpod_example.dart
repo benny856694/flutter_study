@@ -47,7 +47,7 @@ class RiverPodExample extends HookConsumerWidget {
                   onTap: () {
                     EasyLoading.showInfo('clicked');
                   },
-                  child: Icon(Icons.qr_code),
+                  child: const Icon(Icons.qr_code),
                 ),
               ),
             ),
