@@ -40,17 +40,7 @@ class RiverPodExample extends HookConsumerWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            loader.when(
-              data: (data) {
-                EasyLoading.dismiss();
-                return Text('$data');
-              },
-              error: (error, stack) => const Text('error'),
-              loading: () {
-                EasyLoading.show(status: 'wait for $timer sec(s)');
-                return const SizedBox.shrink();
-              },
-            ),
+            Text('${loader.valueOrNull ?? 0}'),
             TextField(
               decoration: InputDecoration(
                 suffixIcon: InkWell(
