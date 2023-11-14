@@ -11,6 +11,7 @@ class O3d extends HookConsumerWidget {
     final pageController = usePageController();
     final o3dcontroller = useState(O3DController());
     return Scaffold(
+      backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
         title: const Text('O3d example'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -19,18 +20,31 @@ class O3d extends HookConsumerWidget {
         children: [
           O3D(
             autoPlay: true,
+            cameraControls: false,
             controller: o3dcontroller.value,
             src: 'assets/disney_style_character.glb',
           ),
           Container(
-            //color: Colors.lightBlue,
+            margin: const EdgeInsets.all(12),
             width: 100,
             height: double.infinity,
             child: PageView(
               //physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
               children: const [
-                Center(child: Text('page1')),
+                Column(
+                  children: <Widget>[
+                    SizedBox(
+                      width: double.infinity,
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          'Daily Goals',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Center(child: Text('page2')),
                 Center(child: Text('page3'))
               ],
