@@ -1,16 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:o3d/o3d.dart';
 
 class O3d extends HookConsumerWidget {
   const O3d({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final index = useState(0);
+    final pageController = usePageController();
+    final o3dcontroller = useState(O3DController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('O3d example'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Container(),
+      body: Stack(
+        children: [
+          O3D(
+            autoPlay: true,
+            controller: o3dcontroller.value,
+            src: 'assets/disney_style_character.glb',
+          ),
+          Container(
+            //color: Colors.lightBlue,
+            width: 100,
+            height: double.infinity,
+            child: PageView(
+              //physics: const NeverScrollableScrollPhysics(),
+              controller: pageController,
+              children: const [
+                Center(child: Text('page1')),
+                Center(child: Text('page2')),
+                Center(child: Text('page3'))
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: index.value,
+          onTap: (value) {
+            index.value = value;
+            pageController.animateToPage(value,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.ease);
+          },
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.hearing), label: "Stats"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'My'),
+          ]),
     );
   }
 }
