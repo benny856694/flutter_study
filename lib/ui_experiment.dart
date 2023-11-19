@@ -18,7 +18,7 @@ class UiExperiment extends HookConsumerWidget {
           //foregroundColor: Colors.white,
           leading: const Icon(Icons.menu),
           title: const Text('Title'),
-          backgroundColor: Colors.indigo,
+          // backgroundColor: Colors.black,
           elevation: 0,
           actions: [
             IconButton(
