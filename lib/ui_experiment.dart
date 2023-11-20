@@ -187,6 +187,13 @@ class UiExperiment extends HookConsumerWidget {
                               appearance: CircularSliderAppearance(
                                   startAngle: -90,
                                   angleRange: 360,
+                                  customColors: CustomSliderColors(
+                                    progressBarColors: [
+                                      Colors.red,
+                                      Colors.cyan,
+                                      Colors.yellow
+                                    ],
+                                  ),
                                   customWidths: CustomSliderWidths(
                                     progressBarWidth: 10,
                                     trackWidth: 10,
