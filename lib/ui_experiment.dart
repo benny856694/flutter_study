@@ -147,7 +147,7 @@ class UiExperiment extends HookConsumerWidget {
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 2, 69, 62),
+                        color: Color(0xff2c315c),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       child: Row(
@@ -175,7 +175,6 @@ class UiExperiment extends HookConsumerWidget {
                                 Text(
                                   'sales statistics',
                                   style: TextStyle(
-                                    fontWeight: FontWeight.bold,
                                     color: Colors.white38,
                                   ),
                                 ),
