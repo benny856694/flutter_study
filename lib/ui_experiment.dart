@@ -13,6 +13,7 @@ class UiExperiment extends HookConsumerWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: Colors.white,
         //extendBodyBehindAppBar: true,
         appBar: AppBar(
           // shape: const RoundedRectangleBorder(
@@ -219,29 +220,19 @@ class UiExperiment extends HookConsumerWidget {
               const Gap(8),
               SizedBox(
                 height: 200,
-                width: double.infinity,
+                //width: double.infinity,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 13,
                   itemBuilder: (_, i) {
-                    return Container(
-                      width: 300,
-                      height: 200,
-                      margin: const EdgeInsets.only(right: 16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              'https://picsum.photos/seed/${i + 1}/300/200'),
-                        ),
-                        // gradient: const SweepGradient(colors: [
-                        //   Colors.red,
-                        //   Colors.green,
-                        //   Colors.yellow,
-                        //   Colors.red,
-                        // ]),
-                      ),
+                    return Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                          //side: BorderSide(),
+                          borderRadius: BorderRadius.circular(12)),
+                      elevation: 8,
+                      child: Image.network(
+                          'https://picsum.photos/seed/${i + 1}/300/200'),
                     );
                   },
                 ),
