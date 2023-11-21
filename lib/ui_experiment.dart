@@ -215,6 +215,31 @@ class UiExperiment extends HookConsumerWidget {
                     ),
                   ),
                 ],
+              ),
+              const Gap(8),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: PhysicalModel(
+                      color: Colors.transparent,
+                      shadowColor: Colors.black,
+                      elevation: 16,
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            gradient: const SweepGradient(colors: [
+                              Colors.red,
+                              Colors.green,
+                              Colors.yellow,
+                              Colors.red,
+                            ])),
+                      ),
+                    ),
+                  )
+                ],
               )
             ],
           ),
