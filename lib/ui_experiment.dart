@@ -217,30 +217,35 @@ class UiExperiment extends HookConsumerWidget {
                 ],
               ),
               const Gap(8),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 150,
-                    height: 150,
-                    child: PhysicalModel(
-                      color: Colors.transparent,
-                      shadowColor: Colors.black,
-                      elevation: 16,
-                      borderRadius: BorderRadius.circular(12),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient: const SweepGradient(colors: [
-                              Colors.red,
-                              Colors.green,
-                              Colors.yellow,
-                              Colors.red,
-                            ])),
+              SizedBox(
+                height: 200,
+                width: double.infinity,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 13,
+                  itemBuilder: (_, i) {
+                    return Container(
+                      width: 300,
+                      height: 200,
+                      margin: const EdgeInsets.only(right: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                              'https://picsum.photos/seed/${i + 1}/300/200'),
+                        ),
+                        // gradient: const SweepGradient(colors: [
+                        //   Colors.red,
+                        //   Colors.green,
+                        //   Colors.yellow,
+                        //   Colors.red,
+                        // ]),
                       ),
-                    ),
-                  )
-                ],
-              )
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
