@@ -35,7 +35,7 @@ class VideoCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        lorem(paragraphs: 1, words: 50),
+                        lorem(paragraphs: 1, words: 12),
                         maxLines: 2,
                         style: const TextStyle(
                           height: 1.2,
