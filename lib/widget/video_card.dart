@@ -50,16 +50,17 @@ class VideoCard extends StatelessWidget {
                         ),
                       ),
                       const Text(
-                        '12k Views | 4 hours ago',
+                        '12k views | 4 hours ago',
                         style: TextStyle(
                           color: Colors.black54,
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
+                const Gap(16),
               ],
-            )
+            ),
           ],
         ),
       ),

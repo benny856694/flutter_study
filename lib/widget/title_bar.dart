@@ -25,7 +25,7 @@ class TitleBar extends StatelessWidget {
             ),
             const Gap(4),
             const Text(
-              'YouTute',
+              'YouTube',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
