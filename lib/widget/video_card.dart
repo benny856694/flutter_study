@@ -38,6 +38,7 @@ class VideoCard extends StatelessWidget {
                         lorem(paragraphs: 1, words: 50),
                         maxLines: 2,
                         style: const TextStyle(
+                          height: 1.2,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
@@ -46,13 +47,13 @@ class VideoCard extends StatelessWidget {
                       Text(
                         lorem(paragraphs: 1, words: 1),
                         style: const TextStyle(
-                          color: Colors.black45,
+                          color: Colors.black87,
                         ),
                       ),
                       const Text(
-                        '12k views | 4 hours ago',
+                        '12K views • 4 hours ago',
                         style: TextStyle(
-                          color: Colors.black54,
+                          color: Colors.black87,
                         ),
                       ),
                     ],
