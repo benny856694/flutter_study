@@ -8,7 +8,7 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 48,
+      height: 40,
       child: Row(
         children: [
           Expanded(
@@ -32,6 +32,7 @@ class SearchBox extends StatelessWidget {
                 child: const TextField(
                   //style: TextStyle(color: Colors.white60),
                   decoration: InputDecoration(
+                    //isDense: true,
                     fillColor: Colors.white,
                     filled: true,
                     contentPadding: EdgeInsets.only(

@@ -15,19 +15,22 @@ class YoutubeHome extends StatelessWidget {
       //backgroundColor: ytBgColor,
 
       body: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
         child: Column(
           children: [
             Row(
               children: [
-                const Row(
+                Row(
                   children: [
-                    Gap(16),
-                    Icon(Icons.menu),
-                    Gap(16),
-                    FaIcon(FontAwesomeIcons.youtube),
-                    Gap(4),
-                    Text(
+                    const Gap(16),
+                    const Icon(Icons.menu),
+                    const Gap(16),
+                    FaIcon(
+                      FontAwesomeIcons.youtube,
+                      color: Colors.red.shade700,
+                    ),
+                    const Gap(4),
+                    const Text(
                       'YouTute',
                       style: TextStyle(
                         fontSize: 16,
@@ -38,11 +41,11 @@ class YoutubeHome extends StatelessWidget {
                 ),
                 Expanded(
                   child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                    //mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(
-                        width: 300,
+                        width: 400,
                         child: SearchBox(),
                       ),
                       const Gap(16),
@@ -72,6 +75,7 @@ class YoutubeHome extends StatelessWidget {
                       icon: const Icon(Icons.notifications_none),
                     ),
                     IconButton(
+                      visualDensity: VisualDensity.compact,
                       style:
                           IconButton.styleFrom(backgroundColor: Colors.black54),
                       onPressed: () {},
