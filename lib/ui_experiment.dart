@@ -276,32 +276,28 @@ class UiExperiment extends HookConsumerWidget {
                         ),
                       ),
                     ),
-                    Expanded(
+                    Container(
+                      width: 80,
+                      padding:
+                          const EdgeInsets.only(top: 1, right: 1, bottom: 1),
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 48, 48, 48),
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(24),
+                            bottomRight: Radius.circular(24)),
+                      ),
                       child: Container(
-                        padding:
-                            const EdgeInsets.only(top: 1, right: 1, bottom: 1),
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 48, 48, 48),
+                          color: Color.fromARGB(255, 34, 34, 34),
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(24),
                               bottomRight: Radius.circular(24)),
                         ),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 34, 34, 34),
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(24),
-                                bottomRight: Radius.circular(24)),
-                          ),
-                          child: const SizedBox(
-                            height: double.infinity,
-                            child: Center(
-                              child: Icon(
-                                Icons.search,
-                                color: Colors.white60,
-                                size: 28,
-                              ),
-                            ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.white60,
+                            size: 28,
                           ),
                         ),
                       ),
