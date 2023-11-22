@@ -243,7 +243,6 @@ class UiExperiment extends HookConsumerWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      flex: 10,
                       child: Container(
                         padding: const EdgeInsets.all(1),
                         clipBehavior: Clip.antiAlias,
