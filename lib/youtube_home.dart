@@ -66,16 +66,18 @@ class YoutubeHome extends StatelessWidget {
                   ),
                 ),
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  //mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.video_call),
+                      icon: const Icon(Icons.video_call_outlined),
                     ),
+                    const Gap(4),
                     IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.notifications_none),
                     ),
+                    const Gap(4),
                     IconButton(
                       visualDensity: VisualDensity.compact,
                       style:
