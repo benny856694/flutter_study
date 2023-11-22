@@ -22,8 +22,10 @@ class YoutubeHome extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Gap(16),
-                    const Icon(Icons.menu),
+                    IconButton(
+                      icon: const Icon(Icons.menu),
+                      onPressed: () {},
+                    ),
                     const Gap(16),
                     FaIcon(
                       FontAwesomeIcons.youtube,
