@@ -5,6 +5,7 @@ import 'package:flutter_studdy/o3d.dart';
 import 'package:flutter_studdy/riverpod_example.dart';
 import 'package:flutter_studdy/scroll_behavior.dart';
 import 'package:flutter_studdy/ui_experiment.dart';
+import 'package:flutter_studdy/youtube_home.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() async {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const UiExperiment(),
+      home: const YoutubeHome(),
       builder: EasyLoading.init(),
     );
   }
