@@ -186,7 +186,7 @@ class YoutubeHome extends StatelessWidget {
                                   ),
                                   title: const Text('Lorem'),
                                   trailing: e == 0
-                                      ? FaIcon(
+                                      ? const FaIcon(
                                           FontAwesomeIcons.towerBroadcast,
                                           size: 14,
                                           color: Colors.red,
@@ -198,7 +198,8 @@ class YoutubeHome extends StatelessWidget {
                                               width: 4,
                                               height: 4,
                                               decoration: BoxDecoration(
-                                                  color: Colors.blue,
+                                                  color: Color.fromARGB(
+                                                      255, 54, 54, 249),
                                                   borderRadius:
                                                       BorderRadius.circular(2)),
                                             ),
