@@ -26,7 +26,7 @@ class MainContent extends StatelessWidget {
             SizedBox(
                 height: 219,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(4, (i) => i + 1)
                       .map(
                         (e) => VideoCard(
