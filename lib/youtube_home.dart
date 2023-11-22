@@ -32,7 +32,7 @@ class YoutubeHome extends StatelessWidget {
                 children: [
                   NavigationMenus(sz: sz),
                   const Gap(16),
-                  Expanded(
+                  const Expanded(
                     child: MainContent(),
                   ),
                 ],
@@ -44,5 +44,3 @@ class YoutubeHome extends StatelessWidget {
     );
   }
 }
-
-

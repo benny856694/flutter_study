@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:flutter_studdy/widget/menu_item.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -86,7 +87,7 @@ class NavigationMenus extends StatelessWidget {
                 ),
               ),
             ),
-            ...List.generate(18, (i) => i)
+            ...List.generate(10, (i) => i)
                 .map((e) => ListTile(
                       onTap: () {},
                       leading: CircleAvatar(
@@ -94,7 +95,7 @@ class NavigationMenus extends StatelessWidget {
                         backgroundImage:
                             NetworkImage('https://picsum.photos/seed/$e/32'),
                       ),
-                      title: const Text('Lorem'),
+                      title: Text(lorem(paragraphs: 1, words: 1)),
                       trailing: e == 0
                           ? const FaIcon(
                               FontAwesomeIcons.towerBroadcast,
