@@ -30,7 +30,7 @@ class NavigationMenus extends StatelessWidget {
               title: 'Shorts',
             ),
             const MenuItem(
-              icon: Icon(Icons.subscript),
+              icon: FaIcon(FontAwesomeIcons.compactDisc),
               title: 'Subscriptions',
             ),
             const Divider(
