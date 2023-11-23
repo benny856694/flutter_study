@@ -68,7 +68,7 @@ class TitleBar extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(Icons.notifications_none),
             ),
-            const Gap(4),
+            const Gap(8),
             IconButton(
               visualDensity: VisualDensity.compact,
               style: IconButton.styleFrom(backgroundColor: Colors.black54),
