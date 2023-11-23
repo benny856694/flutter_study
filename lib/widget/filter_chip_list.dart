@@ -16,12 +16,26 @@ class FilterChipList extends HookConsumerWidget {
         useState(List.generate(22, (i) => lorem(paragraphs: 1, words: 1)))
             .value;
     final selectedChipIndex = useState(0);
+    final controller = useScrollController();
+    final leftVisible = useState(false);
+    final rightVisible = useState(true);
+    controller.addListener(
+      () {
+        final maxPos = controller.position.maxScrollExtent;
+        final pos = controller.position.pixels;
+        //print('maxPos: $maxPos, pos:$pos');
+        leftVisible.value = pos > 0;
+        rightVisible.value = pos < maxPos;
+      },
+    );
+
     return SizedBox(
       height: 36,
       child: Stack(
-        alignment: Alignment.centerRight,
+        //alignment: Alignment.centerRight,
         children: [
           ListView.separated(
+            controller: controller,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => MyFilterChip(
               onTap: () {
@@ -33,21 +47,66 @@ class FilterChipList extends HookConsumerWidget {
             separatorBuilder: (ctx, idx) => const Gap(8),
             itemCount: chipList.length,
           ),
-          Container(
-            alignment: Alignment.centerRight,
-            width: 100,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              gradient: LinearGradient(
-                colors: [Colors.white.withAlpha(0), Colors.white, Colors.white],
-                stops: const [0, 0.6, 1],
+          if (rightVisible.value)
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                alignment: Alignment.centerRight,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.white.withAlpha(0),
+                      Colors.white,
+                      Colors.white
+                    ],
+                    stops: const [0, 0.6, 1],
+                  ),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    controller.animateTo(
+                      controller.position.pixels + 100,
+                      duration: const Duration(milliseconds: 250),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  icon: const Icon(Icons.chevron_right),
+                ),
               ),
             ),
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.chevron_right),
+          if (leftVisible.value)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  gradient: LinearGradient(
+                    begin: Alignment.centerRight,
+                    end: Alignment.centerLeft,
+                    colors: [
+                      Colors.white.withAlpha(0),
+                      Colors.white,
+                      Colors.white
+                    ],
+                    stops: const [0, 0.6, 1],
+                  ),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    controller.animateTo(
+                      controller.position.pixels - 100,
+                      duration: const Duration(milliseconds: 250),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  icon: const Icon(Icons.chevron_left),
+                ),
+              ),
             ),
-          )
         ],
       ),
     );
