@@ -8,21 +8,17 @@ class VideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 390,
-      height: 219 + 100,
-      child: Card(
+    return Card(
+      elevation: 0,
+      child: SizedBox(
+        width: 390,
         child: Column(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: SizedBox(
-                width: 390,
-                height: 219,
-                child: Image.network(
-                  'https://picsum.photos/seed/$seed/390/219',
-                  fit: BoxFit.cover,
-                ),
+              child: Image.network(
+                'https://picsum.photos/seed/$seed/390/219',
+                fit: BoxFit.cover,
               ),
             ),
             const Gap(16),

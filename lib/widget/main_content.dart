@@ -21,17 +21,17 @@ class MainContent extends StatelessWidget {
             child: Column(
           children: [
             SizedBox(
-                height: 219,
+                //height: 219,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(4, (i) => i + 1)
-                      .map(
-                        (e) => VideoCard(
-                          seed: e,
-                        ),
-                      )
-                      .toList(),
-                ))
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(4, (i) => i + 1)
+                  .map(
+                    (e) => VideoCard(
+                      seed: e,
+                    ),
+                  )
+                  .toList(),
+            ))
           ],
         ))
       ],
