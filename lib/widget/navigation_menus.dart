@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:flutter_studdy/widget/menu_item.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -31,8 +32,10 @@ class NavigationMenus extends HookConsumerWidget {
               title: 'Home',
               isSelected: true,
             ),
-            const MenuItem(
-              icon: Icon(Icons.short_text),
+            MenuItem(
+              icon: SvgPicture.asset(
+                'assets/shorts.svg',
+              ),
               title: 'Shorts',
             ),
             const MenuItem(

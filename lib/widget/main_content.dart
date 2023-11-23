@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:flutter_studdy/widget/filter_chip.dart';
 import 'package:flutter_studdy/widget/video_card.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 import 'filter_chip_list.dart';
@@ -52,10 +53,7 @@ class MainContent extends StatelessWidget {
                 ),
                 const Gap(40),
                 ListTile(
-                  leading: Icon(
-                    Icons.short_text,
-                    color: Colors.red[700],
-                  ),
+                  leading: SvgPicture.asset('assets/shorts_red.svg'),
                   title: const Text(
                     'Shorts',
                     style: TextStyle(
