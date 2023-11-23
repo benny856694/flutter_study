@@ -16,9 +16,13 @@ class VideoCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                'https://picsum.photos/seed/$seed/390/219',
-                fit: BoxFit.cover,
+              child: SizedBox(
+                width: 390,
+                height: 219,
+                child: Image.network(
+                  'https://picsum.photos/seed/$seed/390/219',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const Gap(16),

@@ -15,7 +15,7 @@ class MainContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FilterChipList(),
+        const FilterChipList(),
         const Gap(16),
         Expanded(
             child: Column(
