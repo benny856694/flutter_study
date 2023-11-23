@@ -1,9 +1,12 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:flutter_studdy/widget/menu_item.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class NavigationMenus extends StatelessWidget {
+class NavigationMenus extends HookConsumerWidget {
   const NavigationMenus({
     super.key,
     required this.sz,
@@ -12,7 +15,10 @@ class NavigationMenus extends StatelessWidget {
   final Size sz;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final subscriptions =
+        useState(List.generate(10, (index) => lorem(paragraphs: 1, words: 1)))
+            .value;
     return SizedBox(
       width: 230,
       //height: sz.height - 40,
@@ -87,16 +93,16 @@ class NavigationMenus extends StatelessWidget {
                 ),
               ),
             ),
-            ...List.generate(10, (i) => i)
-                .map((e) => ListTile(
+            ...subscriptions
+                .mapIndexed((idx, e) => ListTile(
                       onTap: () {},
                       leading: CircleAvatar(
                         radius: 12,
                         backgroundImage:
                             NetworkImage('https://picsum.photos/seed/$e/32'),
                       ),
-                      title: Text(lorem(paragraphs: 1, words: 1)),
-                      trailing: e == 0
+                      title: Text(e),
+                      trailing: idx == 0
                           ? const FaIcon(
                               FontAwesomeIcons.towerBroadcast,
                               size: 14,
@@ -109,7 +115,8 @@ class NavigationMenus extends StatelessWidget {
                                   width: 4,
                                   height: 4,
                                   decoration: BoxDecoration(
-                                      color: Color.fromARGB(255, 54, 54, 249),
+                                      color: const Color.fromARGB(
+                                          255, 54, 54, 249),
                                       borderRadius: BorderRadius.circular(2)),
                                 ),
                               ),

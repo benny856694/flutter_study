@@ -45,6 +45,7 @@ dependencies:
   sleek_circular_slider: ^2.0.1
   font_awesome_flutter: ^10.6.0
   flutter_lorem: ^2.0.0
+  collection: ^1.17.2
 
 dev_dependencies:
   flutter_test:
