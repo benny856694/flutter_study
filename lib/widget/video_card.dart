@@ -4,20 +4,23 @@ import 'package:gap/gap.dart';
 
 class VideoCard extends StatelessWidget {
   final int seed;
-  const VideoCard({super.key, this.seed = 0});
+  final bool isShort;
+  const VideoCard({super.key, this.seed = 0, this.isShort = false});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
       child: SizedBox(
-        width: 390,
+        width: isShort ? 255 : 390,
         child: Column(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                'https://picsum.photos/seed/$seed/390/219',
+                isShort
+                    ? 'https://picsum.photos/seed/$seed/255/452'
+                    : 'https://picsum.photos/seed/$seed/390/219',
                 fit: BoxFit.cover,
               ),
             ),
@@ -25,11 +28,13 @@ class VideoCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  backgroundImage:
-                      NetworkImage('https://picsum.photos/seed/$seed/36'),
-                ),
-                const Gap(16),
+                if (!isShort) ...[
+                  CircleAvatar(
+                    backgroundImage:
+                        NetworkImage('https://picsum.photos/seed/$seed/36'),
+                  ),
+                  const Gap(16),
+                ],
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,15 +49,16 @@ class VideoCard extends StatelessWidget {
                         ),
                       ),
                       const Gap(4),
-                      Text(
-                        lorem(paragraphs: 1, words: 1),
-                        style: const TextStyle(
-                          color: Colors.black87,
+                      if (!isShort)
+                        Text(
+                          lorem(paragraphs: 1, words: 1),
+                          style: const TextStyle(
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
-                      const Text(
-                        '12K views • 4 hours ago',
-                        style: TextStyle(
+                      Text(
+                        isShort ? '30K views' : '12K views • 4 hours ago',
+                        style: const TextStyle(
                           color: Colors.black87,
                         ),
                       ),

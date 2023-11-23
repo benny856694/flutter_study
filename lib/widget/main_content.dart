@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:flutter_studdy/widget/filter_chip.dart';
@@ -18,22 +20,73 @@ class MainContent extends StatelessWidget {
         const FilterChipList(),
         const Gap(16),
         Expanded(
+          child: SingleChildScrollView(
             child: Column(
-          children: [
-            SizedBox(
-                //height: 219,
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(4, (i) => i + 1)
-                  .map(
-                    (e) => VideoCard(
-                      seed: e,
+              children: [
+                SizedBox(
+                  //height: 219,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(4, (i) => i + 1)
+                        .map(
+                          (e) => VideoCard(
+                            seed: Random().nextInt(100),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+                const Gap(40),
+                SizedBox(
+                  //height: 219,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(4, (i) => i + 1)
+                        .map(
+                          (e) => VideoCard(
+                            seed: Random().nextInt(100),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+                const Gap(40),
+                ListTile(
+                  leading: Icon(
+                    Icons.short_text,
+                    color: Colors.red[700],
+                  ),
+                  title: const Text(
+                    'Shorts',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                  )
-                  .toList(),
-            ))
-          ],
-        ))
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.close),
+                  ),
+                ),
+                const Gap(10),
+                SizedBox(
+                  //height: 219,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(6, (i) => i + 1)
+                        .map(
+                          (e) => VideoCard(
+                            seed: Random().nextInt(100),
+                            isShort: true,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
