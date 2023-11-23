@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_studdy/widget/search_box.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
@@ -19,18 +20,9 @@ class TitleBar extends StatelessWidget {
               onPressed: () {},
             ),
             const Gap(16),
-            FaIcon(
-              FontAwesomeIcons.youtube,
-              color: Colors.red.shade700,
+            SvgPicture.asset(
+              'assets/youtubelogo.svg',
             ),
-            const Gap(4),
-            const Text(
-              'YouTube',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            )
           ],
         ),
         Expanded(
