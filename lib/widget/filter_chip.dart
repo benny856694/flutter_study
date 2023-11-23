@@ -13,19 +13,19 @@ class MyFilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+          alignment: Alignment.center,
           color: isSelected ? const Color.fromARGB(255, 3, 3, 3) : chipBgColor,
-        ),
-        child: Text(
-          title,
-          style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ));
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: isSelected ? Colors.white : Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
+    );
   }
 }
