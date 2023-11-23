@@ -26,7 +26,7 @@ class YoutubeHome extends StatelessWidget {
         child: Column(
           children: [
             const TitleBar(),
-            const Gap(32),
+            const Gap(16),
             Expanded(
               child: Row(
                 children: [
