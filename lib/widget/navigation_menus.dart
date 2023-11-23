@@ -48,12 +48,17 @@ class NavigationMenus extends HookConsumerWidget {
             ListTile(
               horizontalTitleGap: 0,
               onTap: () {},
-              visualDensity: VisualDensity.compact,
+              //visualDensity: VisualDensity.compact,
               leading: const Text(
                 'You',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              title: const Icon(Icons.chevron_right),
+              title: const Row(
+                children: [
+                  Icon(Icons.chevron_right),
+                  Expanded(child: SizedBox.shrink()),
+                ],
+              ),
             ),
             const MenuItem(
               icon: Icon(Icons.person),
