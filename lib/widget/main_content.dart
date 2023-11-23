@@ -53,6 +53,7 @@ class MainContent extends StatelessWidget {
                 ),
                 const Gap(40),
                 ListTile(
+                  contentPadding: EdgeInsets.all(0),
                   leading: SvgPicture.asset('assets/shorts_red.svg'),
                   title: const Text(
                     'Shorts',
