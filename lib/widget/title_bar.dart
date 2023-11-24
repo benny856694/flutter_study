@@ -31,7 +31,7 @@ class TitleBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
-                width: 400,
+                width: 515,
                 child: SearchBox(),
               ),
               const Gap(16),
