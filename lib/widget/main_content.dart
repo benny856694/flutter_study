@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:flutter_studdy/widget/filter_chip.dart';
+import 'package:flutter_studdy/widget/post_card.dart';
 import 'package:flutter_studdy/widget/show_more.dart';
 import 'package:flutter_studdy/widget/video_card.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -83,6 +84,35 @@ class MainContent extends StatelessWidget {
                 const Gap(10),
                 const ShowMoreButton(),
                 const Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(4, (i) => i + 1)
+                      .map(
+                        (e) => VideoCard(
+                          seed: Random().nextInt(100),
+                        ),
+                      )
+                      .toList(),
+                ),
+                const Gap(26),
+                const ListTile(
+                  contentPadding: EdgeInsets.all(0),
+                  leading: Text(
+                    'Latest YouTube posts',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                const Gap(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children:
+                      List.filled(4, 0).map((e) => const PostCard()).toList(),
+                ),
+                const Gap(20),
               ],
             ),
           ),
