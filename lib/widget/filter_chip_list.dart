@@ -13,7 +13,7 @@ class FilterChipList extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final chipList =
-        useState(List.generate(22, (i) => lorem(paragraphs: 1, words: 1)))
+        useState(List.generate(15, (i) => lorem(paragraphs: 1, words: 1)))
             .value;
     final selectedChipIndex = useState(0);
     final controller = useScrollController();
@@ -32,6 +32,7 @@ class FilterChipList extends HookConsumerWidget {
     return SizedBox(
       height: 36,
       child: Stack(
+        clipBehavior: Clip.none,
         //alignment: Alignment.centerRight,
         children: [
           ListView.separated(
@@ -47,12 +48,12 @@ class FilterChipList extends HookConsumerWidget {
             separatorBuilder: (ctx, idx) => const Gap(8),
             itemCount: chipList.length,
           ),
-          if (rightVisible.value)
+          if (rightVisible.value) ...[
             Align(
               alignment: Alignment.centerRight,
               child: Container(
                 alignment: Alignment.centerRight,
-                width: 100,
+                width: 90,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   gradient: LinearGradient(
@@ -61,27 +62,32 @@ class FilterChipList extends HookConsumerWidget {
                       Colors.white,
                       Colors.white
                     ],
-                    stops: const [0, 0.6, 1],
+                    stops: const [0, 0.5, 1],
                   ),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    controller.animateTo(
-                      controller.position.pixels + 100,
-                      duration: const Duration(milliseconds: 250),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  icon: const Icon(Icons.chevron_right),
                 ),
               ),
             ),
-          if (leftVisible.value)
+            Positioned(
+              right: -15,
+              top: 0,
+              child: IconButton(
+                onPressed: () {
+                  controller.animateTo(
+                    controller.position.pixels + 100,
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                icon: const Icon(Icons.chevron_right),
+              ),
+            )
+          ],
+          if (leftVisible.value) ...[
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
                 alignment: Alignment.centerLeft,
-                width: 100,
+                width: 90,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   gradient: LinearGradient(
@@ -92,21 +98,26 @@ class FilterChipList extends HookConsumerWidget {
                       Colors.white,
                       Colors.white
                     ],
-                    stops: const [0, 0.6, 1],
+                    stops: const [0, 0.5, 1],
                   ),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    controller.animateTo(
-                      controller.position.pixels - 100,
-                      duration: const Duration(milliseconds: 250),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  icon: const Icon(Icons.chevron_left),
                 ),
               ),
             ),
+            Positioned(
+              left: -15,
+              top: 0,
+              child: IconButton(
+                onPressed: () {
+                  controller.animateTo(
+                    controller.position.pixels - 100,
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                icon: const Icon(Icons.chevron_left),
+              ),
+            ),
+          ],
         ],
       ),
     );
