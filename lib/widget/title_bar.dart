@@ -73,6 +73,7 @@ class TitleBar extends StatelessWidget {
                 ),
               ),
             ),
+            const Gap(16),
           ],
         ),
       ],
