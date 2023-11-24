@@ -69,7 +69,7 @@ class FilterChipList extends HookConsumerWidget {
             ),
             Positioned(
               right: -15,
-              top: 0,
+              top: -2,
               child: IconButton(
                 onPressed: () {
                   controller.animateTo(
@@ -105,7 +105,7 @@ class FilterChipList extends HookConsumerWidget {
             ),
             Positioned(
               left: -15,
-              top: 0,
+              top: -2,
               child: IconButton(
                 onPressed: () {
                   controller.animateTo(
