@@ -25,8 +25,7 @@ class YoutubeHome extends HookConsumerWidget {
     });
     final sz = MediaQuery.of(context).size;
     return Scaffold(
-      //backgroundColor: ytBgColor,
-
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
         child: Column(
