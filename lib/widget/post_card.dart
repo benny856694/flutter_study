@@ -7,13 +7,14 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PostCard extends HookConsumerWidget {
-  const PostCard({super.key});
+  final double width;
+  const PostCard({super.key, required this.width});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final seed = useState(Random().nextInt(30)).value;
     return SizedBox(
-      width: 390,
+      width: width,
       height: 196,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),

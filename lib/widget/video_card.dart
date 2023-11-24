@@ -5,14 +5,15 @@ import 'package:gap/gap.dart';
 class VideoCard extends StatelessWidget {
   final int seed;
   final bool isShort;
-  const VideoCard({super.key, this.seed = 0, this.isShort = false});
+  final double width;
+  const VideoCard({super.key, required this.width, this.seed = 0, this.isShort = false});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
       child: SizedBox(
-        width: isShort ? 255 : 390,
+        width: width,
         child: Column(
           children: [
             ClipRRect(

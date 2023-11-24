@@ -11,6 +11,8 @@ import 'package:gap/gap.dart';
 
 import 'filter_chip_list.dart';
 
+const gap = 8;
+
 class MainContent extends StatelessWidget {
   const MainContent({
     super.key,
@@ -24,96 +26,112 @@ class MainContent extends StatelessWidget {
         const Gap(16),
         Expanded(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  //height: 219,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(4, (i) => i + 1)
-                        .map(
-                          (e) => VideoCard(
-                            seed: Random().nextInt(100),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-                const Gap(40),
-                SizedBox(
-                  //height: 219,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(4, (i) => i + 1)
-                        .map(
-                          (e) => VideoCard(
-                            seed: Random().nextInt(100),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-                const Gap(40),
-                ListTile(
-                  contentPadding: EdgeInsets.all(0),
-                  leading: SvgPicture.asset('assets/shorts_red.svg'),
-                  title: const Text(
-                    'Shorts',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                const videoCnt = 3;
+                const shortsCnt = 5;
+                const postCnt = 3;
+                final vw = (constraints.maxWidth - (videoCnt) * gap) / videoCnt;
+                final sw =
+                    (constraints.maxWidth - (shortsCnt) * gap) / shortsCnt;
+
+                print('maxWidth: ${constraints.maxWidth} w:$vw, gap:$gap');
+                return Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(videoCnt, (i) => i + 1)
+                          .map(
+                            (e) => VideoCard(
+                              width: vw,
+                              seed: Random().nextInt(100),
+                            ),
+                          )
+                          .toList(),
                     ),
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.close),
-                  ),
-                ),
-                const Gap(10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(6, (i) => i + 1)
-                      .map(
-                        (e) => VideoCard(
-                          seed: Random().nextInt(100),
-                          isShort: true,
-                        ),
-                      )
-                      .toList(),
-                ),
-                const Gap(10),
-                const ShowMoreButton(),
-                const Gap(10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(4, (i) => i + 1)
-                      .map(
-                        (e) => VideoCard(
-                          seed: Random().nextInt(100),
-                        ),
-                      )
-                      .toList(),
-                ),
-                const Gap(26),
-                const ListTile(
-                  contentPadding: EdgeInsets.all(0),
-                  leading: Text(
-                    'Latest YouTube posts',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                    const Gap(40),
+                    SizedBox(
+                      //height: 219,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: List.generate(videoCnt, (i) => i + 1)
+                            .map(
+                              (e) => VideoCard(
+                                width: vw,
+                                seed: Random().nextInt(100),
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
-                  ),
-                ),
-                const Gap(20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children:
-                      List.filled(4, 0).map((e) => const PostCard()).toList(),
-                ),
-                const Gap(20),
-              ],
+                    const Gap(40),
+                    ListTile(
+                      contentPadding: EdgeInsets.all(0),
+                      leading: SvgPicture.asset('assets/shorts_red.svg'),
+                      title: const Text(
+                        'Shorts',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.close),
+                      ),
+                    ),
+                    const Gap(10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(shortsCnt, (i) => i + 1)
+                          .map(
+                            (e) => VideoCard(
+                              width: sw,
+                              seed: Random().nextInt(100),
+                              isShort: true,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                    const Gap(10),
+                    const ShowMoreButton(),
+                    const Gap(10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(videoCnt, (i) => i + 1)
+                          .map(
+                            (e) => VideoCard(
+                              width: vw,
+                              seed: Random().nextInt(100),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                    const Gap(26),
+                    const ListTile(
+                      contentPadding: EdgeInsets.all(0),
+                      leading: Text(
+                        'Latest YouTube posts',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    const Gap(20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.filled(postCnt, 0)
+                          .map((e) => PostCard(
+                                width: vw,
+                              ))
+                          .toList(),
+                    ),
+                    const Gap(20),
+                  ],
+                );
+              },
             ),
           ),
         ),
