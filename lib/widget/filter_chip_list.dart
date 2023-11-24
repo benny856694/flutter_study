@@ -53,7 +53,7 @@ class FilterChipList extends HookConsumerWidget {
               alignment: Alignment.centerRight,
               child: Container(
                 alignment: Alignment.centerRight,
-                width: 90,
+                width: 60,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   gradient: LinearGradient(
@@ -87,7 +87,7 @@ class FilterChipList extends HookConsumerWidget {
               alignment: Alignment.centerLeft,
               child: Container(
                 alignment: Alignment.centerLeft,
-                width: 90,
+                width: 60,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   gradient: LinearGradient(
