@@ -35,7 +35,7 @@ class PostCard extends HookConsumerWidget {
                 const Text('Somebody • 10 hours ago'),
               ],
             ),
-            const Gap(16),
+            const Gap(10),
             Expanded(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,7 @@ class PostCard extends HookConsumerWidget {
                 ],
               ),
             ),
-            const Gap(16),
+            const Gap(10),
             const Row(
               children: [
                 Icon(
@@ -86,7 +86,7 @@ class PostCard extends HookConsumerWidget {
                 ),
                 Gap(4),
                 Text('326'),
-                Gap(32),
+                Gap(16),
                 Icon(Icons.more_vert),
               ],
             ),
