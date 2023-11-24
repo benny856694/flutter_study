@@ -31,7 +31,8 @@ class MainContent extends StatelessWidget {
                 const videoCnt = 3;
                 const shortsCnt = 5;
                 const postCnt = 3;
-                final vw = (constraints.maxWidth - (videoCnt) * gap) / videoCnt;
+                final vw =
+                    (constraints.maxWidth - (videoCnt - 1) * gap) / videoCnt;
                 final sw =
                     (constraints.maxWidth - (shortsCnt) * gap) / shortsCnt;
 
