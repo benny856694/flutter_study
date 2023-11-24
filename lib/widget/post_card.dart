@@ -48,14 +48,15 @@ class PostCard extends HookConsumerWidget {
                         color: Colors.black,
                         fontSize: 16,
                         height: 1.2,
-                        fontWeight: FontWeight.w200,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
                   const Gap(32),
                   ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.network('https://picsum.photos/116')),
+                      child: Image.network(
+                          'https://picsum.photos/seed/$seed/116')),
                 ],
               ),
             ),
