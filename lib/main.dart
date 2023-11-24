@@ -8,20 +8,25 @@ import 'package:flutter_studdy/ui_experiment.dart';
 import 'package:flutter_studdy/youtube_home.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final titleProvider = StateProvider<String>((ref) {
+  return 'Flutter Demo';
+});
+
 void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final title = ref.watch(titleProvider);
     return MaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: title,
       theme: ThemeData(
         //primaryColor: ,
 
