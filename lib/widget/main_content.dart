@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:flutter_studdy/widget/filter_chip.dart';
+import 'package:flutter_studdy/widget/show_more.dart';
 import 'package:flutter_studdy/widget/video_card.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -68,20 +69,20 @@ class MainContent extends StatelessWidget {
                   ),
                 ),
                 const Gap(10),
-                SizedBox(
-                  //height: 219,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(6, (i) => i + 1)
-                        .map(
-                          (e) => VideoCard(
-                            seed: Random().nextInt(100),
-                            isShort: true,
-                          ),
-                        )
-                        .toList(),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(6, (i) => i + 1)
+                      .map(
+                        (e) => VideoCard(
+                          seed: Random().nextInt(100),
+                          isShort: true,
+                        ),
+                      )
+                      .toList(),
                 ),
+                const Gap(10),
+                const ShowMoreButton(),
+                const Gap(10),
               ],
             ),
           ),
