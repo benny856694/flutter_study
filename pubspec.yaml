@@ -47,6 +47,7 @@ dependencies:
   flutter_lorem: ^2.0.0
   collection: ^1.17.2
   flutter_svg: ^2.0.9
+  video_player: ^2.8.1
 
 dev_dependencies:
   flutter_test:

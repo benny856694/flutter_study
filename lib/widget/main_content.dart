@@ -36,7 +36,6 @@ class MainContent extends StatelessWidget {
                 final sw =
                     (constraints.maxWidth - (shortsCnt) * gap) / shortsCnt;
 
-                print('maxWidth: ${constraints.maxWidth} w:$vw, gap:$gap');
                 return Column(
                   children: [
                     Row(
