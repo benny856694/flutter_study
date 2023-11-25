@@ -54,23 +54,27 @@ class VideoCard extends HookConsumerWidget {
                 ),
                 Visibility(
                   visible: !showVideo.value,
-                  child: Positioned(
-                    //alignment: Alignment.bottomRight,
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 4, bottom: 4),
-                      clipBehavior: Clip.antiAlias,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 0, horizontal: 4),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: Colors.black,
-                      ),
-                      child: Text(
-                        videoLength.value,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 12),
+                  child: SizedBox(
+                    width: width,
+                    height: isShort ? 452 : 219,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      //right: 0,
+                      //bottom: 0,
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 4, bottom: 4),
+                        clipBehavior: Clip.antiAlias,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: Colors.black,
+                        ),
+                        child: Text(
+                          videoLength.value,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 12),
+                        ),
                       ),
                     ),
                   ),
