@@ -17,9 +17,10 @@ class VideoCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final showVideo = useState(false);
+    final imgHeight = isShort ? 452 : 219;
     final imgUrl = useState(isShort
-        ? 'https://picsum.photos/seed/$seed/${width.round()}/452'
-        : 'https://picsum.photos/seed/$seed/${width.round()}/219');
+        ? 'https://picsum.photos/seed/$seed/${width.round()}/$imgHeight'
+        : 'https://picsum.photos/seed/$seed/${width.round()}/$imgHeight');
     final texts = useState(lorem(paragraphs: 1, words: 12));
     final avatarUrl = useState('https://picsum.photos/seed/$seed/36');
     final authorName = useState(lorem(paragraphs: 1, words: 1));
@@ -48,7 +49,7 @@ class VideoCard extends HookConsumerWidget {
                   visible: showVideo.value,
                   child: SizedBox(
                     width: width,
-                    height: isShort ? 452 : 219,
+                    height: imgHeight.toDouble(),
                     child: const MyVideoPlayer(),
                   ),
                 ),
