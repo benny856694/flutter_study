@@ -18,10 +18,11 @@ class VideoCard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final showVideo = useState(false);
     final imgHeight = isShort ? 452 : 219;
-    final imgUrl = useState(
-        'https://picsum.photos/seed/$seed/${width.round()}/$imgHeight');
+    final seed = useState(this.seed);
+    final imgUrl =
+        'https://picsum.photos/seed/${seed.value}/${width.round()}/$imgHeight';
     final texts = useState(lorem(paragraphs: 1, words: 12));
-    final avatarUrl = useState('https://picsum.photos/seed/$seed/36');
+    final avatarUrl = useState('https://picsum.photos/seed/${seed.value}/36');
     final authorName = useState(lorem(paragraphs: 1, words: 1));
     final isOverText = useState(false);
     final videoLength =
@@ -40,7 +41,7 @@ class VideoCard extends HookConsumerWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    imgUrl.value,
+                    imgUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -56,7 +57,7 @@ class VideoCard extends HookConsumerWidget {
                   visible: !showVideo.value,
                   child: SizedBox(
                     width: width,
-                    height: isShort ? 452 : 219,
+                    height: imgHeight.toDouble(),
                     child: Align(
                       alignment: Alignment.bottomRight,
                       //right: 0,

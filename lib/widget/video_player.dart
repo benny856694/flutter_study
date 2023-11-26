@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 
 import 'package:flutter/material.dart';
@@ -12,9 +13,13 @@ class MyVideoPlayer extends StatefulHookConsumerWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _VideoPlayerState();
 }
 
+const bg = Colors.black45;
+
 class _VideoPlayerState extends ConsumerState<MyVideoPlayer> {
   late VideoPlayerController _controller;
   late UniqueKey _id;
+  var bgColor = bg;
+  Timer? fadeTimer;
 
   @override
   void initState() {
@@ -34,19 +39,24 @@ class _VideoPlayerState extends ConsumerState<MyVideoPlayer> {
         //   print(e.toString());
         // }
       });
+    fadeTimer = buildTimer();
     print('create $_id');
+  }
+
+  Timer buildTimer() {
+    return Timer(const Duration(milliseconds: 500), () {
+      setState(() {
+        bgColor = bg.withAlpha(50);
+        print('change bg in timer');
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final isHoverButtons = useState(false);
     final justShown = useState(true);
-    final bgColor = useState(Colors.black45);
-    Future.delayed(const Duration(seconds: 1), () {
-      if (mounted) {
-        justShown.value = false;
-      }
-    });
+
     return Stack(
       children: [
         Container(),
@@ -65,8 +75,17 @@ class _VideoPlayerState extends ConsumerState<MyVideoPlayer> {
         Align(
           alignment: Alignment.topRight,
           child: MouseRegion(
-            onEnter: (event) => isHoverButtons.value = true,
-            onExit: (event) => isHoverButtons.value = false,
+            onEnter: (event) {
+              isHoverButtons.value = true;
+              fadeTimer?.cancel();
+              bgColor = bg;
+              print('cancel timer, set color');
+            },
+            onExit: (event) {
+              isHoverButtons.value = false;
+              fadeTimer?.cancel();
+              fadeTimer = buildTimer();
+            },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 100),
               curve: Curves.easeInOut,
@@ -74,7 +93,7 @@ class _VideoPlayerState extends ConsumerState<MyVideoPlayer> {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
-                color: bgColor.value,
+                color: bgColor,
               ),
               child: const Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,6 +139,7 @@ class _VideoPlayerState extends ConsumerState<MyVideoPlayer> {
   void dispose() {
     super.dispose();
     _controller.dispose();
+    fadeTimer?.cancel();
     print('disposed  $_id');
   }
 }
