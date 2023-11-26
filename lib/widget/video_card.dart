@@ -18,9 +18,8 @@ class VideoCard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final showVideo = useState(false);
     final imgHeight = isShort ? 452 : 219;
-    final imgUrl = useState(isShort
-        ? 'https://picsum.photos/seed/$seed/${width.round()}/$imgHeight'
-        : 'https://picsum.photos/seed/$seed/${width.round()}/$imgHeight');
+    final imgUrl = useState(
+        'https://picsum.photos/seed/$seed/${width.round()}/$imgHeight');
     final texts = useState(lorem(paragraphs: 1, words: 12));
     final avatarUrl = useState('https://picsum.photos/seed/$seed/36');
     final authorName = useState(lorem(paragraphs: 1, words: 1));
