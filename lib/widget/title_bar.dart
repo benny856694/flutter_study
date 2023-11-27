@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_studdy/widget/search_box.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -64,7 +65,9 @@ class TitleBar extends StatelessWidget {
             IconButton(
               visualDensity: VisualDensity.compact,
               style: IconButton.styleFrom(backgroundColor: Colors.black54),
-              onPressed: () {},
+              onPressed: () {
+                EasyLoading.showToast('Hello Bin');
+              },
               icon: const Text(
                 'B',
                 style: TextStyle(

@@ -7,6 +7,7 @@ import 'package:flutter_studdy/scroll_behavior.dart';
 import 'package:flutter_studdy/ui_experiment.dart';
 import 'package:flutter_studdy/youtube_home.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 final titleProvider = StateProvider<String>((ref) {
   return 'Flutter Demo';
@@ -34,7 +35,17 @@ class MyApp extends HookConsumerWidget {
         useMaterial3: true,
       ),
       home: const YoutubeHome(),
-      builder: EasyLoading.init(),
+      builder: EasyLoading.init(
+          builder: (context, child) => ResponsiveBreakpoints.builder(
+                child: child!,
+                breakpoints: [
+                  const Breakpoint(start: 0, end: 450, name: MOBILE),
+                  const Breakpoint(start: 451, end: 800, name: TABLET),
+                  const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+                  const Breakpoint(
+                      start: 1921, end: double.infinity, name: '4K'),
+                ],
+              )),
     );
   }
 }

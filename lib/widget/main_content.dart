@@ -8,6 +8,7 @@ import 'package:flutter_studdy/widget/show_more.dart';
 import 'package:flutter_studdy/widget/video_card.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import 'filter_chip_list.dart';
 
@@ -28,7 +29,18 @@ class MainContent extends StatelessWidget {
           child: SingleChildScrollView(
             child: LayoutBuilder(
               builder: (context, constraints) {
-                const videoCnt = 3;
+                var videoCnt = 3;
+                final responsive = ResponsiveBreakpoints.of(context);
+                print(responsive);
+                if (responsive.largerOrEqualTo('4K')) {
+                  videoCnt = 5;
+                } else if (responsive.largerOrEqualTo(DESKTOP)) {
+                  videoCnt = 4;
+                } else if (responsive.largerOrEqualTo(TABLET)) {
+                  videoCnt = 2;
+                } else if (responsive.largerOrEqualTo(MOBILE)) {
+                  videoCnt = 1;
+                }
                 const shortsCnt = 5;
                 const postCnt = 3;
                 final vw =
@@ -66,7 +78,7 @@ class MainContent extends StatelessWidget {
                     ),
                     const Gap(40),
                     ListTile(
-                      contentPadding: EdgeInsets.all(0),
+                      contentPadding: const EdgeInsets.all(0),
                       leading: SvgPicture.asset('assets/shorts_red.svg'),
                       title: const Text(
                         'Shorts',
