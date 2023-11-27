@@ -40,14 +40,12 @@ class _VideoPlayerState extends ConsumerState<MyVideoPlayer> {
         // }
       });
     fadeTimer = buildTimer();
-    print('create $_id');
   }
 
   Timer buildTimer() {
     return Timer(const Duration(milliseconds: 500), () {
       setState(() {
         bgColor = bg.withAlpha(50);
-        print('change bg in timer');
       });
     });
   }
@@ -79,7 +77,6 @@ class _VideoPlayerState extends ConsumerState<MyVideoPlayer> {
               isHoverButtons.value = true;
               fadeTimer?.cancel();
               bgColor = bg;
-              print('cancel timer, set color');
             },
             onExit: (event) {
               isHoverButtons.value = false;
@@ -140,6 +137,5 @@ class _VideoPlayerState extends ConsumerState<MyVideoPlayer> {
     super.dispose();
     _controller.dispose();
     fadeTimer?.cancel();
-    print('disposed  $_id');
   }
 }
