@@ -31,7 +31,6 @@ class MainContent extends StatelessWidget {
               builder: (context, constraints) {
                 var videoCnt = 3;
                 final responsive = ResponsiveBreakpoints.of(context);
-                print(responsive);
                 if (responsive.largerOrEqualTo('4K')) {
                   videoCnt = 5;
                 } else if (responsive.largerOrEqualTo(DESKTOP)) {
