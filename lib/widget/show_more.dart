@@ -18,36 +18,32 @@ class ShowMoreButton extends HookConsumerWidget {
               thickness: 1,
             ),
           ),
-          Center(
-            child: SizedBox(
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                onEnter: (event) => isHover.value = true,
-                onExit: (event) => isHover.value = false,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: const StadiumBorder(),
-                    side: const BorderSide(color: Colors.black26),
-                    backgroundColor:
-                        isHover.value ? Colors.grey[300] : Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: RichText(
-                      text: const TextSpan(text: 'Show more', children: [
-                        WidgetSpan(
-                            alignment: PlaceholderAlignment.middle,
-                            child: RotatedBox(
-                              quarterTurns: 1,
-                              child: Icon(
-                                Icons.chevron_right,
-                                color: Colors.black,
-                              ),
-                            ))
-                      ]),
-                    ),
-                  ),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            onEnter: (event) => isHover.value = true,
+            onExit: (event) => isHover.value = false,
+            child: OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                shape: const StadiumBorder(),
+                side: const BorderSide(color: Colors.black26),
+                backgroundColor:
+                    isHover.value ? Colors.grey[300] : Colors.white,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: RichText(
+                  text: const TextSpan(text: 'Show more', children: [
+                    WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: RotatedBox(
+                          quarterTurns: 1,
+                          child: Icon(
+                            Icons.chevron_right,
+                            color: Colors.black,
+                          ),
+                        ))
+                  ]),
                 ),
               ),
             ),
