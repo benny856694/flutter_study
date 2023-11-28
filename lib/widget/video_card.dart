@@ -101,6 +101,7 @@ class VideoCard extends HookConsumerWidget {
                       children: [
                         Text(
                           texts.value,
+                          overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: const TextStyle(
                             height: 1.2,
