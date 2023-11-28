@@ -20,7 +20,6 @@ class ShowMoreButton extends HookConsumerWidget {
           ),
           Center(
             child: SizedBox(
-              width: 200,
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 onEnter: (event) => isHover.value = true,
@@ -33,18 +32,21 @@ class ShowMoreButton extends HookConsumerWidget {
                     backgroundColor:
                         isHover.value ? Colors.grey[300] : Colors.white,
                   ),
-                  child: RichText(
-                    text: const TextSpan(text: 'Show more', children: [
-                      WidgetSpan(
-                          alignment: PlaceholderAlignment.middle,
-                          child: RotatedBox(
-                            quarterTurns: 1,
-                            child: Icon(
-                              Icons.chevron_right,
-                              color: Colors.black,
-                            ),
-                          ))
-                    ]),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: RichText(
+                      text: const TextSpan(text: 'Show more', children: [
+                        WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: RotatedBox(
+                              quarterTurns: 1,
+                              child: Icon(
+                                Icons.chevron_right,
+                                color: Colors.black,
+                              ),
+                            ))
+                      ]),
+                    ),
                   ),
                 ),
               ),
