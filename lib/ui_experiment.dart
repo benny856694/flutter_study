@@ -40,7 +40,14 @@ class UiExperiment extends HookConsumerWidget {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.red),
                   ),
-                )
+                  child: Container(
+                    //alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                    ),
+                    child: const Text('abc'),
+                  ),
+                ),
               ],
             ),
           ),
