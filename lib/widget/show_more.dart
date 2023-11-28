@@ -13,11 +13,9 @@ class ShowMoreButton extends HookConsumerWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          const Center(
-            child: Divider(
-              height: 0,
-              thickness: 1,
-            ),
+          const Divider(
+            height: 0,
+            thickness: 1,
           ),
           MouseRegion(
             cursor: SystemMouseCursors.click,
