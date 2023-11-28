@@ -12,38 +12,41 @@ class ShowMoreButton extends HookConsumerWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Container(
-            alignment: Alignment.center,
-            child: const Divider(
+          const Center(
+            child: Divider(
               height: 0,
               thickness: 1,
             ),
           ),
-          Container(
-            clipBehavior: Clip.antiAlias,
-            alignment: Alignment.center,
-            width: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(17),
-              border: Border.all(color: Colors.black12),
-              color: isHover.value ? Colors.grey[300] : Colors.white,
-            ),
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              onEnter: (event) => isHover.value = true,
-              onExit: (event) => isHover.value = false,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    'Show more',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+          Center(
+            child: SizedBox(
+              width: 200,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                onEnter: (event) => isHover.value = true,
+                onExit: (event) => isHover.value = false,
+                child: OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    side: const BorderSide(color: Colors.black26),
+                    backgroundColor:
+                        isHover.value ? Colors.grey[300] : Colors.white,
                   ),
-                  RotatedBox(quarterTurns: 1, child: Icon(Icons.chevron_right)),
-                ],
+                  child: RichText(
+                    text: const TextSpan(text: 'Show more', children: [
+                      WidgetSpan(
+                          alignment: PlaceholderAlignment.middle,
+                          child: RotatedBox(
+                            quarterTurns: 1,
+                            child: Icon(
+                              Icons.chevron_right,
+                              color: Colors.black,
+                            ),
+                          ))
+                    ]),
+                  ),
+                ),
               ),
             ),
           )
