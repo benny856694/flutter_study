@@ -66,10 +66,10 @@ class VideoCard extends HookConsumerWidget {
                         margin: const EdgeInsets.only(right: 4, bottom: 4),
                         clipBehavior: Clip.antiAlias,
                         padding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 4),
+                            vertical: 1, horizontal: 4),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
-                          color: Colors.black,
+                          color: Colors.black.withAlpha(200),
                         ),
                         child: Text(
                           videoLength.value,
