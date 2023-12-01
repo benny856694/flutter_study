@@ -49,6 +49,7 @@ dependencies:
   flutter_svg: ^2.0.9
   video_player: ^2.8.1
   responsive_framework: ^1.1.1
+  flutter_animate: ^4.3.0
 
 dev_dependencies:
   flutter_test:
