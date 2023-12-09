@@ -14,33 +14,32 @@ class SearchBox extends StatelessWidget {
     return SizedBox(
       height: 40,
       child: Container(
-        clipBehavior: Clip.antiAlias,
-        // padding: const EdgeInsets.only(
-        //   left: 16,
-        // ),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius),
+        padding: const EdgeInsets.all(1),
+        decoration: const ShapeDecoration(
+          color: borderColor,
+          shape: StadiumBorder(),
+        ),
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: const ShapeDecoration(
+            shape: StadiumBorder(),
             color: Colors.white,
-            border: Border.all(color: borderColor)),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(borderRadius - 1),
+          ),
           child: Row(
             children: [
               const Expanded(
                 child: Center(
-                  child: TextField(
-                    //style: TextStyle(color: Colors.white60),
-                    decoration: InputDecoration(
-                      isDense: true,
-                      fillColor: Colors.white,
-                      hoverColor: Colors.white,
-                      filled: true,
-                      contentPadding: EdgeInsets.only(
-                        left: 18,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 2.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        isDense: true,
+                        fillColor: Colors.white,
+                        hoverColor: Colors.white,
+                        filled: true,
+                        border: InputBorder.none,
+                        hintText: 'Search',
                       ),
-                      border: InputBorder.none,
-                      hintText: 'Search',
-                      //hintStyle: TextStyle(color: Colors.white60)),
                     ),
                   ),
                 ),
@@ -51,11 +50,8 @@ class SearchBox extends StatelessWidget {
                 decoration: const BoxDecoration(
                     color: searchIconBg,
                     border: Border(left: BorderSide(color: borderColor))),
-                child: const Center(
-                  child: Icon(
-                    Icons.search,
-                    size: 28,
-                  ),
+                child: const Icon(
+                  Icons.search,
                 ),
               ),
             ],
