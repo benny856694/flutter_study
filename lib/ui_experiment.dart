@@ -1,8 +1,9 @@
+// ignore_for_file: unused_import, unused_local_variable
+
 import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_studdy/widget/search_box.dart';
@@ -12,7 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class UiExperiment extends HookConsumerWidget {
-  const UiExperiment({Key? key}) : super(key: key);
+  const UiExperiment({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
