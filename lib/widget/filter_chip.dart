@@ -20,20 +20,20 @@ class MyFilterChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-            alignment: Alignment.center,
-            color:
-                isSelected ? const Color.fromARGB(255, 3, 3, 3) : chipBgColor,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-            child: Text(
-              title,
-              style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+      child: FilledButton(
+        onPressed: onTap,
+        clipBehavior: Clip.antiAlias,
+        style: FilledButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          visualDensity: VisualDensity.compact,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+          backgroundColor: isSelected ? Colors.black : Colors.black12,
+          foregroundColor: isSelected ? Colors.white : Colors.black,
+        ),
+        child: Text(title),
       ),
     );
   }
