@@ -13,21 +13,16 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: isSelected ? Colors.black12 : null,
-      ),
-      child: ListTile(
-        visualDensity: VisualDensity.compact,
-        onTap: () {},
-        leading: icon,
-        title: Text(
-          title,
-          style: TextStyle(
-            fontWeight: isSelected ? FontWeight.bold : null,
-          ),
+    return ListTile(
+      tileColor: isSelected ? Colors.black12 : null,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      visualDensity: VisualDensity.compact,
+      onTap: () {},
+      leading: icon,
+      title: Text(
+        title,
+        style: TextStyle(
+          fontWeight: isSelected ? FontWeight.bold : null,
         ),
       ),
     );
